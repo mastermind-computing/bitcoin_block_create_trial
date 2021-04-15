@@ -4,12 +4,14 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 	"unsafe"
 )
 
 func main() {
-
+	randFile := RandString(12)
+	file, _ := os.Create("result" + randFile + ".txt")
 	for i := 0; i < 10000000; i++ {
 		tryBlock := RandString(64)
 		h := sha256.New()
@@ -20,14 +22,16 @@ func main() {
 		if i%100000 == 0 {
 			fmt.Println(i)
 		}
-		if zeros > 16 {
+		if zeros > 2 {
 			fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 			fmt.Println(tryBlock)
 			fmt.Println("------------------------------------------------------------------------")
 			fmt.Println(encodedString)
 			fmt.Println(zeros)
+			file.WriteString(fmt.Sprintf("%s - %v \n", tryBlock, zeros))
 		}
 	}
+	file.Close()
 
 }
 
