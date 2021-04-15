@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"time"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -16,6 +17,7 @@ const (
 )
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
 	randFile := SecureRandomAlphaString(12)
 	file, _ := os.Create("result" + randFile + ".txt")
 	for i := 0; i < 100000000; i++ {
