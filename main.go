@@ -25,10 +25,10 @@ func main() {
 		encodedString := fmt.Sprintf("%x", h.Sum(nil))
 		zeros := findStartingZeros(encodedString)
 
-		if i%100000 == 0 {
-			fmt.Println(i)
+		if i%1000000 == 0 {
+			fmt.Printf("%d mil\n", i/1000000)
 		}
-		if zeros > 10 {
+		if zeros > 5 {
 			fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 			fmt.Println(tryBlock)
 			fmt.Println("------------------------------------------------------------------------")
